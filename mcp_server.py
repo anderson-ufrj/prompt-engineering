@@ -23,6 +23,9 @@ from datetime import datetime
 sys.path.insert(0, str(Path(__file__).parent))
 
 from mcp.server.fastmcp import FastMCP
+from starlette.applications import Starlette
+from starlette.responses import JSONResponse
+from starlette.routing import Route
 
 # Configure logging (critical for stdio servers)
 logging.basicConfig(
@@ -578,6 +581,20 @@ def get_antipatterns() -> str:
 
 
 # =============================================================================
+# HEALTH CHECK ENDPOINT
+# =============================================================================
+
+async def health_endpoint(request):
+    """Health check endpoint for Railway/container orchestration"""
+    return JSONResponse({
+        "status": "healthy",
+        "service": "prompt-engineering-lab",
+        "timestamp": datetime.now().isoformat(),
+        "version": "1.0.0"
+    })
+
+
+# =============================================================================
 # MAIN ENTRY POINT
 # =============================================================================
 
@@ -590,9 +607,25 @@ def main():
     logger.info(f"Mode: {mode}, Port: {port}")
 
     if mode == "remote":
-        # Railway/Cloud - SSE transport
+        # Railway/Cloud - SSE transport with health endpoint
         logger.info("Running in REMOTE mode (SSE)")
-        mcp.run(transport="sse", host="0.0.0.0", port=port)
+
+        import uvicorn
+
+        # Get the MCP SSE app
+        mcp_app = mcp.sse_app()
+
+        # Create wrapper app with health endpoint
+        routes = [
+            Route("/health", health_endpoint, methods=["GET"]),
+        ]
+
+        # Mount MCP app
+        app = Starlette(routes=routes)
+        app.mount("/", mcp_app)
+
+        # Run with uvicorn
+        uvicorn.run(app, host="0.0.0.0", port=port)
     else:
         # Local - stdio transport
         logger.info("Running in LOCAL mode (stdio)")
