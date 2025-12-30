@@ -8,10 +8,9 @@ Complete pipeline that connects all components with real interaction data.
 """
 
 import json
-import time
 import argparse
 from pathlib import Path
-from datetime import datetime, timedelta
+from datetime import datetime
 from typing import Dict, List, Optional
 import sys
 

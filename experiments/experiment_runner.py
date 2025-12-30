@@ -8,10 +8,9 @@ Location: Minas Gerais, Brazil
 """
 
 import json
-import uuid
 import datetime
 from pathlib import Path
-from typing import Dict, List, Optional, Any
+from typing import Dict, List, Any
 from dataclasses import dataclass, asdict
 import random
 

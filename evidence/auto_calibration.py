@@ -7,10 +7,9 @@ Author: Anderson Henrique da Silva
 Location: Minas Gerais, Brazil
 """
 
-import json
 import numpy as np
 from pathlib import Path
-from typing import Dict, List, Optional, Tuple
+from typing import Dict, List, Tuple
 from dataclasses import dataclass
 from sklearn.feature_extraction.text import TfidfVectorizer
 from sklearn.cluster import KMeans
