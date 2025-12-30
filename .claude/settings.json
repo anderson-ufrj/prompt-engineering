@@ -1,0 +1,31 @@
+{
+  "skills": [
+    "skills/dsr",
+    "skills/cognitive-workflows"
+  ],
+  "hooks": {
+    "PostToolUse": [
+      {
+        "matcher": "*",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "python3 /home/anderson-henrique/Documentos/prompt-engineering/.claude/hooks/collect_metrics.py",
+            "timeout": 10
+          }
+        ]
+      }
+    ],
+    "SessionEnd": [
+      {
+        "hooks": [
+          {
+            "type": "command",
+            "command": "python3 /home/anderson-henrique/Documentos/prompt-engineering/.claude/hooks/session_summary.py",
+            "timeout": 30
+          }
+        ]
+      }
+    ]
+  }
+}
