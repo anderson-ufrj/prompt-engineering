@@ -161,7 +161,7 @@ class ExperimentRunner:
 
 ## Results Summary
 - **Winner:** {results.get('winner', 'Undetermined')}
-- **Confidence Level:** {results.get('confidence_level', 0):.2%}
+- **Confidence Level:** {(results.get('confidence_level') or 0):.2%}
 - **Statistical Significance:** {'Yes' if results.get('statistical_significance') else 'No'}
 
 ## Variant Performance

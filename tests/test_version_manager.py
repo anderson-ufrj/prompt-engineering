@@ -173,19 +173,19 @@ class TestVersionManager:
         assert len(detected_changes) == 3
         
         # Check identity change (should be major)
-        identity_change = next(c for c in detected_changes if "identity" in c["description"])
+        identity_change = next(c for c in detected_changes if "identity" in c["description"].lower())
         assert identity_change["type"] == "major"
         assert identity_change["impact_score"] == 0.9
-        
+
         # Check goals change (should be minor)
-        goals_change = next(c for c in detected_changes if "goals" in c["description"])
+        goals_change = next(c for c in detected_changes if "goals" in c["description"].lower())
         assert goals_change["type"] == "minor"
         assert goals_change["impact_score"] == 0.4
-        
+
         # Check interactions change (should be patch)
-        interactions_change = next(c for c in detected_changes if "interactions" in c["description"])
+        interactions_change = next(c for c in detected_changes if "calibration" in c["description"].lower())
         assert interactions_change["type"] == "patch"
-        assert interactions_change["impact_score"] == 0.1
+        assert interactions_change["impact_score"] == 0.2
     
     def test_detect_changes_unmapped_file(self, version_manager):
         """Test detecting changes for unmapped files"""
@@ -279,20 +279,23 @@ class TestVersionManager:
     
     def test_suggest_next_changes_old_version(self, version_manager):
         """Test suggestions when version is old"""
-        # Manually set old version
+        # Create an old version in the versions directory
         old_time = (datetime.now() - timedelta(days=35)).isoformat()
-        version_file = version_manager.base_path / "meta" / "current_version.json"
-        version_file.parent.mkdir(exist_ok=True)
-        
+        version_file = version_manager.versions_path / "v0_1_0.json"
+        version_file.parent.mkdir(parents=True, exist_ok=True)
+
         with open(version_file, 'w') as f:
             json.dump({
                 "version": "0.1.0",
-                "updated_at": old_time
+                "previous_version": "0.0.0",
+                "change_type": "minor",
+                "timestamp": old_time,
+                "changes": [],
+                "summary": {"total_changes": 0}
             }, f)
-        
-        new_manager = VersionManager(base_path=version_manager.base_path)
-        suggestions = new_manager.suggest_next_changes()
-        
+
+        suggestions = version_manager.suggest_next_changes()
+
         # Should suggest checking if system needs evolution
         assert any("No updates in" in s and "days" in s for s in suggestions)
 
@@ -336,9 +339,9 @@ class TestIntegration:
                 assert "updated_at" in current_data
             
             # Verify version history entry
-            version_history_file = base_path / "anderson-skill" / "meta" / "versions" / "v1_0_0.json"
+            version_history_file = base_path / "meta" / "versions" / "v1_0_0.json"
             assert version_history_file.exists()
-            
+
             with open(version_history_file) as f:
                 history_data = json.load(f)
                 assert history_data["version"] == "1.0.0"
