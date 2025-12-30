@@ -4,9 +4,11 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 
 ## Project Overview
 
-This is a **Prompt Engineering Lab** - a personal system for human-AI collaboration based on the Developer Mental Model Framework (DMMF). It implements a scientific approach to prompt engineering with evidence-based evolution and modular composition.
+This is a **Prompt Engineering Lab** - a personal system for human-AI collaboration based on the Developer Mental Model Framework (DMMF) and Design Science Research Methodology (DSRM). It implements a scientific approach to prompt engineering with evidence-based evolution and modular composition.
 
-**Scientific Foundation:** DMMF research (Silva, 2025) - 40 repositories, 2,799 commits, mixed-methods approach.
+**Scientific Foundations:**
+- **DMMF** (Silva, 2025) - Cognitive profile from 40 repositories, 2,799 commits
+- **DSRM** (Peffers et al., 2008) - Rigorous methodology for artifact creation and evaluation
 
 ## Architecture
 
@@ -40,6 +42,20 @@ prompt-engineering/
 - **Affective:** Quality as non-negotiable, tests = anxiety management
 - **Conative:** Technology as civic tool, ethics and social impact
 - **Reflective:** Continuous iteration, 41.9% refactor-related commits
+
+### DSRM Process (Artifact Development)
+Design Science Research Methodology provides a 6-step process for creating and validating artifacts:
+
+1. **Problem Identification** - Define problem, justify solution value
+2. **Objectives Definition** - Infer quantitative/qualitative goals
+3. **Design & Development** - Create artifact (constructs, models, methods, instantiations)
+4. **Demonstration** - Show artifact solves problem instances
+5. **Evaluation** - Measure effectiveness against objectives
+6. **Communication** - Document and share findings
+
+**Entry Points:** Problem-centered | Objective-centered | Design-centered | Client-initiated
+
+**Application to this project:** Skills, prompts, and patterns are artifacts developed following DSRM rigor. Evidence folder tracks evaluation metrics.
 
 ### Skill System
 Skills follow the Agent Skills Spec (YAML frontmatter + Markdown):
