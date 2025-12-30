@@ -1,0 +1,31 @@
+# Dependencies
+node_modules/
+__pycache__/
+*.pyc
+.venv/
+venv/
+
+# IDE
+.idea/
+.vscode/
+*.swp
+*.swo
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Environment
+.env
+.env.local
+
+# Large files (keep PDFs in docs/ tracked for now)
+# docs/books/*.pdf  # Uncomment if repo size becomes an issue
+
+# Temporary files
+*.tmp
+*.temp
+*.log
+
+# Claude Code local cache
+.claude/
