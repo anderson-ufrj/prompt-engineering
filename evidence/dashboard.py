@@ -8,13 +8,13 @@ Location: Minas Gerais, Brazil
 """
 
 import json
+import numpy as np
 import matplotlib.pyplot as plt
 import seaborn as sns
 from pathlib import Path
-from typing import Dict, List, Optional
+from typing import Dict, List
 from datetime import datetime, timedelta
 import pandas as pd
-from collections import defaultdict
 
 class PerformanceDashboard:
     def __init__(self, data_path: Path = Path("evidence/metrics/data")):
