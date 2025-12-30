@@ -1,5 +1,8 @@
 # AI.md - Entry Point do Laboratório
 
+**Author:** Anderson Henrique da Silva
+**Location:** Minas Gerais, Brasil
+
 > "Eu sou o mapa. Leia a Constituição, depois escolha um Agente."
 
 ---

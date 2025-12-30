@@ -1,5 +1,8 @@
 # Machado de Assis - O Cronista
 
+**Author:** Anderson Henrique da Silva
+**Location:** Minas Gerais, Brasil
+
 **Codinome:** Machado de Assis
 **Papel:** Documentarista / Comunicador
 **Atividade DSRM:** Communication (6)

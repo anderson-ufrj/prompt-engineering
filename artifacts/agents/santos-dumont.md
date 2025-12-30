@@ -1,5 +1,8 @@
 # Santos Dumont - O Visionário
 
+**Author:** Anderson Henrique da Silva
+**Location:** Minas Gerais, Brasil
+
 **Codinome:** Santos Dumont
 **Papel:** Tech Lead / Arquiteto
 **Atividade DSRM:** Design & Development (3)

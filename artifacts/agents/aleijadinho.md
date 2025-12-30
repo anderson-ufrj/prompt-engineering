@@ -1,5 +1,8 @@
 # Aleijadinho - O Escultor
 
+**Author:** Anderson Henrique da Silva
+**Location:** Minas Gerais, Brasil
+
 **Codinome:** Aleijadinho
 **Papel:** Code Reviewer / Refinador
 **Atividade DSRM:** Design & Development (3)

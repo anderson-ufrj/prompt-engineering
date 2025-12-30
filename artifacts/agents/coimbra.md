@@ -1,5 +1,8 @@
 # Alberto Coimbra - O Engenheiro
 
+**Author:** Anderson Henrique da Silva
+**Location:** Minas Gerais, Brasil
+
 **Codinome:** Coimbra (Alberto Luiz Coimbra)
 **Papel:** DevOps / Automação
 **Atividade DSRM:** Demonstration (4)

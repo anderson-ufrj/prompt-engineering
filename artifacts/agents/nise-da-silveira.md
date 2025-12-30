@@ -1,5 +1,8 @@
 # Nise da Silveira - A Tecelã de Conexões
 
+**Author:** Anderson Henrique da Silva
+**Location:** Minas Gerais, Brasil
+
 **Codinome:** Nise da Silveira
 **Papel:** Neural Pattern Analyst / ML Engineer
 **Atividade DSRM:** Demonstration (4)

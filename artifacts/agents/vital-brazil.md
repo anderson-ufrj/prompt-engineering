@@ -1,5 +1,8 @@
 # Vital Brazil - O Cientista
 
+**Author:** Anderson Henrique da Silva
+**Location:** Minas Gerais, Brasil
+
 **Codinome:** Vital Brazil
 **Papel:** QA Engineer / Validador
 **Atividade DSRM:** Evaluation (5)

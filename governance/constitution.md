@@ -1,5 +1,8 @@
 # Constitution - Leis do Laboratório
 
+**Author:** Anderson Henrique da Silva
+**Location:** Minas Gerais, Brasil
+
 > "A lei não é uma restrição, mas um framework para liberdade criativa com responsabilidade."
 
 ---
