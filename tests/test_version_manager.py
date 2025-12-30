@@ -15,7 +15,7 @@ import sys
 # Add parent directory to path for imports
 sys.path.append(str(Path(__file__).parent.parent))
 
-from anderson_skill.meta.version_manager import (
+from src.versioning.version_manager import (
     VersionChange,
     VersionManager
 )

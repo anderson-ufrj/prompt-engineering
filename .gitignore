@@ -29,3 +29,13 @@ Thumbs.db
 
 # Claude Code local cache
 .claude/
+
+# Personal content (private - not for public repo)
+artifacts/prompts/personal/
+
+# Tool-specific configs
+.config/
+
+# Test coverage
+.coverage
+htmlcov/

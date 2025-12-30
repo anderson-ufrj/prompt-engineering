@@ -16,7 +16,7 @@ import os
 # Add parent directory to path for imports
 sys.path.append(str(Path(__file__).parent.parent))
 
-from experiments.experiment_runner import (
+from src.experiments.experiment_runner import (
     Experiment,
     ExperimentVariant,
     ExperimentRunner

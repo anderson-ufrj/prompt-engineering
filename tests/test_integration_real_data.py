@@ -18,9 +18,9 @@ import os
 # Add parent directory to path
 sys.path.append(str(Path(__file__).parent.parent))
 
-from evidence.metrics.interaction_analyzer import MetricsCollector, InteractionMetrics
-from experiments.experiment_runner import ExperimentRunner, Experiment, ExperimentVariant
-from evidence.auto_calibration import AutoCalibrationEngine
+from src.metrics.interaction_analyzer import MetricsCollector, InteractionMetrics
+from src.experiments.experiment_runner import ExperimentRunner, Experiment, ExperimentVariant
+from src.calibration.auto_calibration import AutoCalibrationEngine
 
 def simulate_real_interaction():
     """Simulate a real AI interaction for testing purposes"""

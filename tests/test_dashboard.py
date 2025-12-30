@@ -15,7 +15,7 @@ import sys
 
 sys.path.append(str(Path(__file__).parent.parent))
 
-from evidence.dashboard import PerformanceDashboard
+from src.calibration.dashboard import PerformanceDashboard
 
 
 class TestPerformanceDashboard:
@@ -32,7 +32,7 @@ class TestPerformanceDashboard:
     @pytest.fixture
     def dashboard(self, temp_data_path):
         """Create dashboard with temp paths"""
-        with patch('evidence.dashboard.plt'), patch('evidence.dashboard.sns'):
+        with patch('src.calibration.dashboard.plt'), patch('src.calibration.dashboard.sns'):
             dash = PerformanceDashboard(data_path=temp_data_path)
             dash.reports_path = temp_data_path.parent / "reports"
             dash.reports_path.mkdir(exist_ok=True)
@@ -84,7 +84,7 @@ class TestPerformanceDashboard:
 
     def test_dashboard_initialization(self, temp_data_path):
         """Test dashboard initializes correctly"""
-        with patch('evidence.dashboard.plt'), patch('evidence.dashboard.sns'):
+        with patch('src.calibration.dashboard.plt'), patch('src.calibration.dashboard.sns'):
             dashboard = PerformanceDashboard(data_path=temp_data_path)
             assert dashboard.data_path == temp_data_path
             assert dashboard.reports_path.exists()
@@ -125,8 +125,8 @@ class TestPerformanceDashboard:
         assert "error" in report
         assert "No data available" in report["error"]
 
-    @patch('evidence.dashboard.PerformanceDashboard._create_visualizations')
-    @patch('evidence.dashboard.PerformanceDashboard._save_report')
+    @patch('src.calibration.dashboard.PerformanceDashboard._create_visualizations')
+    @patch('src.calibration.dashboard.PerformanceDashboard._save_report')
     def test_generate_report_with_data(self, mock_save, mock_viz, dashboard, sample_interactions):
         """Test comprehensive report generation"""
         self._save_interactions(dashboard.data_path, sample_interactions)
@@ -293,7 +293,7 @@ class TestPerformanceDashboard:
         assert "debugging" in report
         assert "Test recommendation 1" in report
 
-    @patch('evidence.dashboard.plt')
+    @patch('src.calibration.dashboard.plt')
     def test_create_visualizations(self, mock_plt, dashboard, sample_interactions):
         """Test visualization creation doesn't crash"""
         self._save_interactions(dashboard.data_path, sample_interactions)
@@ -365,7 +365,7 @@ class TestDashboardEdgeCases:
                 "iteration_count": 1
             }, f)
 
-        with patch('evidence.dashboard.plt'), patch('evidence.dashboard.sns'):
+        with patch('src.calibration.dashboard.plt'), patch('src.calibration.dashboard.sns'):
             dashboard = PerformanceDashboard(data_path=temp_data_path)
             df = dashboard.load_interaction_data(days=7)
 
@@ -378,7 +378,7 @@ class TestDashboardEdgeCases:
         with open(invalid_file, 'w') as f:
             json.dump({"quality_score": 0.8}, f)
 
-        with patch('evidence.dashboard.plt'), patch('evidence.dashboard.sns'):
+        with patch('src.calibration.dashboard.plt'), patch('src.calibration.dashboard.sns'):
             dashboard = PerformanceDashboard(data_path=temp_data_path)
             df = dashboard.load_interaction_data(days=7)
 

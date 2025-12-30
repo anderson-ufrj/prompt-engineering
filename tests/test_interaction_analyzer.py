@@ -16,8 +16,8 @@ import os
 # Add parent directory to path for imports
 sys.path.append(str(Path(__file__).parent.parent))
 
-from evidence.metrics.interaction_analyzer import (
-    InteractionMetrics, 
+from src.metrics.interaction_analyzer import (
+    InteractionMetrics,
     MetricsCollector
 )
 
