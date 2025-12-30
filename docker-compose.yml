@@ -1,0 +1,40 @@
+# Docker Compose for Prompt Engineering Lab MCP Server
+# Author: Anderson Henrique da Silva
+# Location: Minas Gerais, Brazil
+#
+# Usage:
+#   Development: docker-compose up
+#   Production:  docker-compose -f docker-compose.yml -f docker-compose.prod.yml up
+
+version: '3.8'
+
+services:
+  mcp-server:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: prompt-engineering-mcp
+    ports:
+      - "8000:8000"
+    environment:
+      - MCP_MODE=remote
+      - MCP_PORT=8000
+    volumes:
+      # Persist evidence and experiment data
+      - ./evidence:/app/evidence
+      - ./experiments:/app/experiments
+    restart: unless-stopped
+    healthcheck:
+      test: ["CMD", "python", "-c", "import urllib.request; urllib.request.urlopen('http://localhost:8000/health')"]
+      interval: 30s
+      timeout: 10s
+      retries: 3
+      start_period: 10s
+
+  # Optional: Add monitoring
+  # prometheus:
+  #   image: prom/prometheus
+  #   ports:
+  #     - "9090:9090"
+  #   volumes:
+  #     - ./monitoring/prometheus.yml:/etc/prometheus/prometheus.yml

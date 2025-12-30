@@ -1,0 +1,14 @@
+{
+  "$schema": "https://raw.githubusercontent.com/anthropics/claude-code/main/schemas/mcp-config.json",
+  "mcpServers": {
+    "prompt-lab": {
+      "command": "python",
+      "args": ["mcp_server.py"],
+      "cwd": "/home/anderson-henrique/Documentos/prompt-engineering",
+      "env": {
+        "PYTHONUNBUFFERED": "1",
+        "MCP_MODE": "local"
+      }
+    }
+  }
+}

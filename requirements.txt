@@ -2,6 +2,9 @@
 # Author: Anderson Henrique da Silva
 # Location: Minas Gerais, Brazil
 
+# MCP Server
+mcp[cli]>=1.0.0
+
 # Core dependencies for metrics and analysis
 numpy>=1.21.0
 pandas>=1.3.0
