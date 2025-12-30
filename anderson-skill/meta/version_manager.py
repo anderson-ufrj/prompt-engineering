@@ -27,7 +27,7 @@ class VersionManager:
     def __init__(self, base_path: Path = Path("anderson-skill")):
         self.base_path = base_path
         self.versions_path = base_path / "meta" / "versions"
-        self.versions_path.mkdir(exist_ok=True)
+        self.versions_path.mkdir(parents=True, exist_ok=True)
         self.current_version = self._load_current_version()
         
     def _load_current_version(self) -> str:
