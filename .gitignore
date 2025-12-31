@@ -88,3 +88,12 @@ htmlcov/
 # Tool Configs (local only)
 # -----------------------------------------------------------------------------
 .config/
+
+# -----------------------------------------------------------------------------
+# Journal Submissions (private - not tracked)
+# -----------------------------------------------------------------------------
+# Each journal version is private until publication
+publications/submissions/*/tochi/
+publications/submissions/*/hci/
+publications/submissions/*/minds-machines/
+# Keep shared/ tracked for collaboration
