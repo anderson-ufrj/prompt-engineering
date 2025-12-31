@@ -17,11 +17,11 @@ import sys
 # Add project root to path
 sys.path.append(str(Path(__file__).parent.parent.parent))
 
-from src.metrics.interaction_analyzer import MetricsCollector, InteractionMetrics
+from src.core.metrics.interaction_analyzer import MetricsCollector, InteractionMetrics
 from src.experiments.experiment_runner import ExperimentRunner, Experiment, ExperimentVariant
-from src.calibration.auto_calibration import AutoCalibrationEngine
-from src.calibration.dashboard import PerformanceDashboard
-from src.versioning.version_manager import VersionManager
+from src.core.calibration.auto_calibration import AutoCalibrationEngine
+from src.core.calibration.dashboard import PerformanceDashboard
+from src.core.versioning.version_manager import VersionManager
 
 class IntegrationPipeline:
     """Main integration pipeline for the prompt engineering system"""

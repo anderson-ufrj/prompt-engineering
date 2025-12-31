@@ -42,74 +42,82 @@ This repository implements a **scientific approach to prompt engineering**:
 ```
 prompt-engineering/
 │
-├── AI.md                        # Entry point for AI assistants
+├── CLAUDE.md                    # Entry point for AI assistants
 ├── README.md                    # This file
 │
-├── anderson-skill/              # Personal meta-skill (WHO + HOW)
-│   ├── SKILL.md                 # Entry point
-│   ├── core/                    # Stable context (identity, communication)
-│   ├── dynamic/                 # Volatile context (goals, status)
-│   ├── contexts/                # Situational modes (debug, brainstorm)
-│   ├── interactions/            # Calibration examples (good/bad)
-│   └── meta/                    # Versioning metadata
-│
-├── artifacts/                   # Produced artifacts
-│   ├── agents/                  # Brazilian AI agent personas
-│   ├── prompts/                 # Prompt templates and skills
-│   └── workflows/               # Orchestrated processes
-│
 ├── src/                         # Python source code
+│   ├── core/                    # Core modules
+│   │   ├── metrics/             # Metrics collection
+│   │   ├── calibration/         # Dashboard and auto-calibration
+│   │   ├── pipeline/            # Component orchestration
+│   │   └── versioning/          # Version management
 │   ├── analysis/                # Data analysis scripts
-│   ├── calibration/             # Dashboard and auto-calibration
 │   ├── experiments/             # A/B testing framework
 │   ├── import/                  # Data importers
-│   ├── metrics/                 # Metrics collection
-│   ├── pipeline/                # Component orchestration
-│   └── versioning/              # Version management
+│   └── mcp/                     # MCP Server
 │
-├── evidence/                    # Interaction evidence base
-│   ├── analysis/                # Analysis results
-│   ├── antipatterns/            # Patterns to avoid
-│   ├── metrics/                 # Quantitative measurements (local only)
-│   ├── models/                  # Analysis models
-│   ├── patterns/                # Recurring effective patterns
-│   └── sources/                 # External sources (anthropic-cookbook, etc.)
+├── data/                        # All data files
+│   ├── raw/                     # Raw data
+│   ├── processed/               # Processed data
+│   └── metrics/                 # Collected metrics
+│       ├── data/                # Interaction data (JSON)
+│       ├── sessions/            # Session summaries
+│       └── reports/             # Generated reports
 │
-├── experiments/                 # A/B testing and experiments
-│   ├── hypothesis/              # Experiment definitions
-│   └── results/                 # Measured outcomes
+├── research/                    # Research & Evidence
+│   ├── methodology/             # DMMF, DSRM docs
+│   ├── experiments/             # Hypotheses and results
+│   │   ├── hypotheses/
+│   │   └── results/
+│   ├── evidence/                # Patterns and models
+│   │   ├── patterns/
+│   │   ├── antipatterns/
+│   │   └── models/
+│   └── literature.md            # External references (links)
 │
-├── research/                    # Research methodology and data
-│   ├── data/                    # Research datasets
-│   └── methodology/             # DMMF, DSRM documentation
+├── artifacts/                   # Produced artifacts
+│   ├── agents/                  # Brazilian AI personas
+│   ├── prompts/                 # Prompt templates
+│   │   ├── technical/           # Technical skills
+│   │   └── legacy/              # Legacy prompts
+│   ├── skills/                  # Claude Code skills
+│   └── workflows/               # Orchestrated processes
 │
-├── papers/                      # Scientific output
-│   ├── human-ai-collaboration/  # Main paper
+├── personal/                    # Personal context (gitignored)
+│   ├── SKILL.md                 # Entry point
+│   ├── identity.md              # Background, values
+│   ├── communication.md         # Style preferences
+│   ├── contexts/                # Situational modes
+│   ├── calibration/             # Good/bad interactions
+│   └── goals.md                 # Current objectives
+│
+├── publications/                # Scientific output
+│   ├── papers/                  # Research papers
+│   ├── presentations/           # Talks, slides
 │   └── templates/               # Paper templates
 │
-├── governance/                  # Lab governance
-│   └── constitution.md          # Rules, standards, tech stack
-│
 ├── docs/                        # Documentation
-│   ├── architecture/            # Architectural decisions
-│   ├── books/                   # Reference books
-│   ├── personal/                # Personal materials
-│   └── research/                # Research papers (PDFs)
+│   ├── architecture/            # ADRs
+│   ├── guides/                  # How-tos
+│   └── references/              # PDFs, books
+│
+├── governance/                  # Lab governance
+│   └── constitution.md          # Rules, standards
 │
 ├── tests/                       # Test suite (pytest)
 │
-├── config/                      # Configuration files
+├── deploy/                      # Infrastructure
+│   ├── Dockerfile
+│   └── docker-compose.yml
 │
-├── mcp_server.py                # MCP Server entry point
-├── Dockerfile                   # Container definition
-└── docker-compose.yml           # Container orchestration
+└── config/                      # Configuration files
 ```
 
 ---
 
 ## Core Concepts
 
-### 1. Personal Meta-Skill (`anderson-skill/`)
+### 1. Personal Context (`personal/`)
 
 The foundation layer that defines:
 - **Identity** - Background, values, intellectual trajectory
@@ -126,7 +134,7 @@ Produced resources including:
 - **Prompts** - Technical skills and templates
 - **Workflows** - Orchestrated multi-step processes
 
-### 3. Evidence Base (`evidence/`)
+### 3. Evidence Base (`research/evidence/`)
 
 Empirical foundation built from:
 - **GitHub History** - Commit patterns, PR discussions, code reviews
@@ -134,7 +142,7 @@ Empirical foundation built from:
 - **Interaction Logs** - Effective vs ineffective AI conversations
 - **Metrics** - Response quality, iteration counts, time-to-solution
 
-### 4. Experiments (`experiments/`)
+### 4. Experiments (`research/experiments/`)
 
 Scientific approach to prompt improvement:
 - **Hypothesis** - "Adding X context will improve Y outcome"
@@ -167,16 +175,16 @@ pytest tests/ -v
 
 ```bash
 # Local mode
-python mcp_server.py
+python src/mcp/server.py
 
 # Docker mode
-docker-compose up
+cd deploy && docker-compose up
 ```
 
 ### Running the Pipeline
 
 ```bash
-python -m src.pipeline.integration_pipeline --full
+python -m src.core.pipeline.integration_pipeline --full
 ```
 
 ---
@@ -212,7 +220,7 @@ See `governance/constitution.md` for:
 
 ### Phase 1: Foundation
 - [x] Repository structure
-- [x] Personal meta-skill (`anderson-skill`)
+- [x] Personal meta-skill (`personal/`)
 - [x] Governance framework
 - [x] MCP Server implementation
 

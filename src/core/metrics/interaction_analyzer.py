@@ -27,7 +27,7 @@ class InteractionMetrics:
     success_indicators: List[str] = None
 
 class MetricsCollector:
-    def __init__(self, storage_path: Path = Path("evidence/metrics/data")):
+    def __init__(self, storage_path: Path = Path("data/metrics/data")):
         self.storage_path = storage_path
         self.storage_path.mkdir(exist_ok=True)
         

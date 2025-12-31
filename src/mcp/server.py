@@ -20,7 +20,7 @@ from typing import Optional
 from datetime import datetime
 
 # Add project root to path
-sys.path.insert(0, str(Path(__file__).parent))
+sys.path.insert(0, str(Path(__file__).parent.parent.parent))
 
 from mcp.server.fastmcp import FastMCP
 from starlette.applications import Starlette
@@ -53,7 +53,7 @@ def get_pipeline():
     """Lazy load integration pipeline"""
     global _pipeline
     if _pipeline is None:
-        from src.pipeline.integration_pipeline import IntegrationPipeline
+        from src.core.pipeline.integration_pipeline import IntegrationPipeline
         _pipeline = IntegrationPipeline()
     return _pipeline
 
@@ -62,7 +62,7 @@ def get_metrics_collector():
     """Lazy load metrics collector"""
     global _metrics_collector
     if _metrics_collector is None:
-        from src.metrics.interaction_analyzer import MetricsCollector
+        from src.core.metrics.interaction_analyzer import MetricsCollector
         _metrics_collector = MetricsCollector()
     return _metrics_collector
 
@@ -80,7 +80,7 @@ def get_calibration_engine():
     """Lazy load calibration engine"""
     global _calibration_engine
     if _calibration_engine is None:
-        from src.calibration.auto_calibration import AutoCalibrationEngine
+        from src.core.calibration.auto_calibration import AutoCalibrationEngine
         _calibration_engine = AutoCalibrationEngine()
     return _calibration_engine
 
@@ -89,7 +89,7 @@ def get_dashboard():
     """Lazy load dashboard"""
     global _dashboard
     if _dashboard is None:
-        from src.calibration.dashboard import PerformanceDashboard
+        from src.core.calibration.dashboard import PerformanceDashboard
         _dashboard = PerformanceDashboard()
     return _dashboard
 

@@ -25,9 +25,9 @@ class CalibrationPattern:
     confidence: float
 
 class AutoCalibrationEngine:
-    def __init__(self, data_path: Path = Path("evidence/metrics/data")):
+    def __init__(self, data_path: Path = Path("data/metrics/data")):
         self.data_path = data_path
-        self.model_path = Path("evidence/models")
+        self.model_path = Path("research/evidence/models")
         self.model_path.mkdir(exist_ok=True)
         self.vectorizer = None
         self.success_predictor = None

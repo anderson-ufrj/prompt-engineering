@@ -15,7 +15,7 @@ import sys
 
 sys.path.append(str(Path(__file__).parent.parent))
 
-from src.pipeline.integration_pipeline import IntegrationPipeline
+from src.core.pipeline.integration_pipeline import IntegrationPipeline
 
 
 class TestIntegrationPipeline:
@@ -24,11 +24,11 @@ class TestIntegrationPipeline:
     @pytest.fixture
     def mock_components(self):
         """Mock all pipeline components"""
-        with patch('src.pipeline.integration_pipeline.MetricsCollector') as mock_mc, \
-             patch('src.pipeline.integration_pipeline.ExperimentRunner') as mock_er, \
-             patch('src.pipeline.integration_pipeline.AutoCalibrationEngine') as mock_ace, \
-             patch('src.pipeline.integration_pipeline.PerformanceDashboard') as mock_pd, \
-             patch('src.pipeline.integration_pipeline.VersionManager') as mock_vm:
+        with patch('src.core.pipeline.integration_pipeline.MetricsCollector') as mock_mc, \
+             patch('src.core.pipeline.integration_pipeline.ExperimentRunner') as mock_er, \
+             patch('src.core.pipeline.integration_pipeline.AutoCalibrationEngine') as mock_ace, \
+             patch('src.core.pipeline.integration_pipeline.PerformanceDashboard') as mock_pd, \
+             patch('src.core.pipeline.integration_pipeline.VersionManager') as mock_vm:
 
             yield {
                 'metrics_collector': mock_mc.return_value,
@@ -262,11 +262,11 @@ class TestIntegrationPipelineEdgeCases:
 
     @pytest.fixture
     def mock_components(self):
-        with patch('src.pipeline.integration_pipeline.MetricsCollector') as mock_mc, \
-             patch('src.pipeline.integration_pipeline.ExperimentRunner') as mock_er, \
-             patch('src.pipeline.integration_pipeline.AutoCalibrationEngine') as mock_ace, \
-             patch('src.pipeline.integration_pipeline.PerformanceDashboard') as mock_pd, \
-             patch('src.pipeline.integration_pipeline.VersionManager') as mock_vm:
+        with patch('src.core.pipeline.integration_pipeline.MetricsCollector') as mock_mc, \
+             patch('src.core.pipeline.integration_pipeline.ExperimentRunner') as mock_er, \
+             patch('src.core.pipeline.integration_pipeline.AutoCalibrationEngine') as mock_ace, \
+             patch('src.core.pipeline.integration_pipeline.PerformanceDashboard') as mock_pd, \
+             patch('src.core.pipeline.integration_pipeline.VersionManager') as mock_vm:
             yield {
                 'metrics_collector': mock_mc.return_value,
                 'experiment_runner': mock_er.return_value,

@@ -22,7 +22,7 @@ class VersionChange:
     timestamp: str
 
 class VersionManager:
-    def __init__(self, base_path: Path = Path("anderson-skill")):
+    def __init__(self, base_path: Path = Path("personal")):
         self.base_path = base_path
         self.versions_path = base_path / "meta" / "versions"
         self.versions_path.mkdir(parents=True, exist_ok=True)

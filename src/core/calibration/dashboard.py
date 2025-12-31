@@ -17,9 +17,9 @@ from datetime import datetime, timedelta
 import pandas as pd
 
 class PerformanceDashboard:
-    def __init__(self, data_path: Path = Path("evidence/metrics/data")):
+    def __init__(self, data_path: Path = Path("data/metrics/data")):
         self.data_path = data_path
-        self.reports_path = Path("evidence/metrics/reports")
+        self.reports_path = Path("data/metrics/reports")
         self.reports_path.mkdir(exist_ok=True)
         
         # Configura estilo dos gráficos
