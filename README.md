@@ -1,5 +1,8 @@
 # Prompt Engineering Lab
 
+**Author:** Anderson Henrique da Silva
+**Location:** Minas Gerais, Brasil
+
 **Personal prompt engineering system for human-AI collaboration**
 
 > A self-evolving system where prompts adapt to focus, context changes trigger prompt evolution, and evidence-based calibration ensures continuous improvement.
@@ -39,41 +42,67 @@ This repository implements a **scientific approach to prompt engineering**:
 ```
 prompt-engineering/
 │
+├── AI.md                        # Entry point for AI assistants
 ├── README.md                    # This file
-├── CHANGELOG.md                 # Version history and evolution log
 │
 ├── anderson-skill/              # Personal meta-skill (WHO + HOW)
-│   ├── SKILL.md                 # Entry point with YAML metadata
-│   ├── core/                    # Stable context (identity, values, communication)
-│   ├── dynamic/                 # Volatile context (goals, career status)
-│   ├── contexts/                # Situational modes (debug, interview, brainstorm)
-│   ├── interactions/            # Calibration examples (good/bad patterns)
-│   └── meta/                    # Versioning and maintenance docs
+│   ├── SKILL.md                 # Entry point
+│   ├── core/                    # Stable context (identity, communication)
+│   ├── dynamic/                 # Volatile context (goals, status)
+│   ├── contexts/                # Situational modes (debug, brainstorm)
+│   ├── interactions/            # Calibration examples (good/bad)
+│   └── meta/                    # Versioning metadata
 │
-├── skills/                      # Technical skills library (WHAT)
-│   ├── [skill-name]/            # Each skill is self-contained
-│   │   ├── SKILL.md             # Skill definition and instructions
-│   │   └── [resources]/         # Scripts, templates, references
-│   └── README.md                # Skills catalog and usage guide
+├── artifacts/                   # Produced artifacts
+│   ├── agents/                  # Brazilian AI agent personas
+│   ├── prompts/                 # Prompt templates and skills
+│   └── workflows/               # Orchestrated processes
 │
-├── prompts/                     # Legacy prompts (migration in progress)
-│   └── [persona-prompts]/       # Historical prompt personas
-│
-├── experiments/                 # A/B testing and prompt experiments
-│   ├── hypothesis/              # Experiment definitions
-│   ├── results/                 # Measured outcomes
-│   └── README.md                # Experiment methodology
+├── src/                         # Python source code
+│   ├── analysis/                # Data analysis scripts
+│   ├── calibration/             # Dashboard and auto-calibration
+│   ├── experiments/             # A/B testing framework
+│   ├── import/                  # Data importers
+│   ├── metrics/                 # Metrics collection
+│   ├── pipeline/                # Component orchestration
+│   └── versioning/              # Version management
 │
 ├── evidence/                    # Interaction evidence base
-│   ├── patterns/                # Recurring effective patterns
+│   ├── analysis/                # Analysis results
 │   ├── antipatterns/            # Patterns to avoid
-│   ├── metrics/                 # Quantitative measurements
-│   └── sources/                 # Raw data sources (anonymized)
+│   ├── metrics/                 # Quantitative measurements (local only)
+│   ├── models/                  # Analysis models
+│   ├── patterns/                # Recurring effective patterns
+│   └── sources/                 # External sources (anthropic-cookbook, etc.)
 │
-└── docs/                        # Reference materials
-    ├── books/                   # Prompt engineering literature
-    ├── research/                # Academic papers and articles
-    └── personal/                # CV, portfolio materials
+├── experiments/                 # A/B testing and experiments
+│   ├── hypothesis/              # Experiment definitions
+│   └── results/                 # Measured outcomes
+│
+├── research/                    # Research methodology and data
+│   ├── data/                    # Research datasets
+│   └── methodology/             # DMMF, DSRM documentation
+│
+├── papers/                      # Scientific output
+│   ├── human-ai-collaboration/  # Main paper
+│   └── templates/               # Paper templates
+│
+├── governance/                  # Lab governance
+│   └── constitution.md          # Rules, standards, tech stack
+│
+├── docs/                        # Documentation
+│   ├── architecture/            # Architectural decisions
+│   ├── books/                   # Reference books
+│   ├── personal/                # Personal materials
+│   └── research/                # Research papers (PDFs)
+│
+├── tests/                       # Test suite (pytest)
+│
+├── config/                      # Configuration files
+│
+├── mcp_server.py                # MCP Server entry point
+├── Dockerfile                   # Container definition
+└── docker-compose.yml           # Container orchestration
 ```
 
 ---
@@ -90,14 +119,12 @@ The foundation layer that defines:
 
 This skill answers: *"Who am I working with and how should we communicate?"*
 
-### 2. Technical Skills (`skills/`)
+### 2. Artifacts (`artifacts/`)
 
-Task-specific instructions that define:
-- **What** to do (capabilities, workflows)
-- **How** to do it (step-by-step processes)
-- **Quality criteria** (success metrics)
-
-Skills are **composable** - combine personal context with technical skill for optimal results.
+Produced resources including:
+- **Agents** - Brazilian AI personas (Santos Dumont, Machado de Assis, etc.)
+- **Prompts** - Technical skills and templates
+- **Workflows** - Orchestrated multi-step processes
 
 ### 3. Evidence Base (`evidence/`)
 
@@ -117,92 +144,50 @@ Scientific approach to prompt improvement:
 
 ---
 
-## How It Works
+## Quick Start
 
-```
-┌─────────────────────────────────────────────────────────────┐
-│                    INTERACTION FLOW                          │
-├─────────────────────────────────────────────────────────────┤
-│                                                             │
-│  ┌──────────────┐    ┌──────────────┐    ┌──────────────┐  │
-│  │   Context    │ +  │    Skill     │ +  │    Mode      │  │
-│  │  (WHO I am)  │    │  (WHAT to do)│    │ (HOW urgent) │  │
-│  └──────────────┘    └──────────────┘    └──────────────┘  │
-│         │                   │                   │           │
-│         └───────────────────┴───────────────────┘           │
-│                             │                               │
-│                             ▼                               │
-│                   ┌──────────────────┐                      │
-│                   │ Composed Prompt  │                      │
-│                   └──────────────────┘                      │
-│                             │                               │
-│                             ▼                               │
-│                   ┌──────────────────┐                      │
-│                   │   AI Response    │                      │
-│                   └──────────────────┘                      │
-│                             │                               │
-│                             ▼                               │
-│                   ┌──────────────────┐                      │
-│                   │ Evidence Capture │──────┐               │
-│                   └──────────────────┘      │               │
-│                                             ▼               │
-│                                   ┌──────────────────┐      │
-│                                   │ System Evolution │      │
-│                                   └──────────────────┘      │
-│                                                             │
-└─────────────────────────────────────────────────────────────┘
-```
-
----
-
-## Evidence Sources
-
-### GitHub Analysis
-- Commit message patterns and quality
-- Code review discussions
-- PR descriptions and rationale
-- Issue resolution approaches
-
-### Local Projects
-- `cidadao.ai` - Multi-agent system patterns
-- `neural-lab` - ML experimentation workflows
-- `contributions` - Open source interaction styles
-
-### Interaction History
-- Effective debugging sessions
-- Successful brainstorming conversations
-- Failed interactions and why
-
----
-
-## Usage
-
-### For AI Assistants (Claude Code, etc.)
-
-1. **Load personal context first** (`anderson-skill/SKILL.md`)
-2. **Identify situational mode** (urgent? exploratory? technical?)
-3. **Load relevant technical skill** if task-specific
-4. **Adapt communication** based on context signals
-5. **Contribute to evidence** when patterns emerge
-
-### For Anderson (Maintenance)
+### Environment Setup
 
 ```bash
-# Update dynamic context (weekly or on change)
-vim anderson-skill/dynamic/goals.md
-vim anderson-skill/dynamic/career-status.md
+# Create and activate virtual environment
+python -m venv .venv
+source .venv/bin/activate
 
-# Add new interaction examples
-vim anderson-skill/interactions/good/NNN-description.md
-
-# Run experiment
-vim experiments/hypothesis/NNN-experiment-name.md
-# ... conduct experiment ...
-vim experiments/results/NNN-experiment-name.md
-
-# Version bump on significant changes
-vim anderson-skill/meta/CHANGELOG.md
+# Install dependencies
+pip install -r requirements.txt
 ```
+
+### Running Tests
+
+```bash
+pytest tests/ -v
+```
+
+### Running the MCP Server
+
+```bash
+# Local mode
+python mcp_server.py
+
+# Docker mode
+docker-compose up
+```
+
+### Running the Pipeline
+
+```bash
+python -m src.pipeline.integration_pipeline --full
+```
+
+---
+
+## Governance
+
+See `governance/constitution.md` for:
+- 4D Framework (Delegation, Description, Discernment, Diligence)
+- Tech stack requirements
+- Quality standards
+- Agent responsibilities
 
 ---
 
@@ -210,42 +195,41 @@ vim anderson-skill/meta/CHANGELOG.md
 
 ### Semantic Versioning for Prompts
 
-- **MAJOR** (X.0.0) - Fundamental life/context change (student → employed)
-- **MINOR** (0.X.0) - New skill, significant capability, career milestone
-- **PATCH** (0.0.X) - Tweaks, calibration updates, minor refinements
+- **MAJOR** (X.0.0) - Fundamental life/context change
+- **MINOR** (0.X.0) - New skill, significant capability
+- **PATCH** (0.0.X) - Tweaks, calibration updates
 
-### Current Version: 0.1.0
+### Current Version: 1.0.0
 
-- Initial structure established
-- Core personal context documented
-- Evidence collection framework defined
+- Repository structure complete
+- Personal meta-skill documented
+- Evidence collection framework operational
+- MCP Server deployed
 
 ---
 
 ## Roadmap
 
-### Phase 1: Foundation (Current)
+### Phase 1: Foundation
 - [x] Repository structure
 - [x] Personal meta-skill (`anderson-skill`)
-- [x] Reference skills library
-- [ ] Evidence collection framework
-- [ ] Initial GitHub history analysis
+- [x] Governance framework
+- [x] MCP Server implementation
 
 ### Phase 2: Evidence Base
-- [ ] Analyze GitHub commit patterns
-- [ ] Extract project interaction patterns
-- [ ] Document effective prompting strategies
-- [ ] Build antipattern library
+- [x] Metrics collection hooks
+- [x] Pattern documentation
+- [ ] Antipattern library expansion
+- [ ] GitHub history analysis
 
 ### Phase 3: Experimentation
-- [ ] A/B testing framework
-- [ ] Metrics collection
+- [x] A/B testing framework
+- [x] Metrics collection
 - [ ] Hypothesis-driven improvements
 - [ ] Automated calibration suggestions
 
 ### Phase 4: Automation
 - [ ] CI/CD for prompt validation
-- [ ] Automated evidence extraction
 - [ ] Quality metrics dashboard
 - [ ] Cross-project pattern detection
 
@@ -253,20 +237,11 @@ vim anderson-skill/meta/CHANGELOG.md
 
 ## Principles
 
-### 1. Evidence Over Intuition
-Every prompt decision should be traceable to observed outcomes.
-
-### 2. Composition Over Monoliths
-Small, focused modules that combine > large, rigid templates.
-
-### 3. Evolution Over Perfection
-Prompts are living documents that improve through iteration.
-
-### 4. Transparency Over Magic
-Document WHY prompts work, not just WHAT they contain.
-
-### 5. Personal Over Generic
-This system is optimized for one human-AI partnership, not universal use.
+1. **Evidence Over Intuition** - Decisions traceable to observed outcomes
+2. **Composition Over Monoliths** - Small, focused modules that combine
+3. **Evolution Over Perfection** - Living documents that improve through iteration
+4. **Transparency Over Magic** - Document WHY prompts work, not just WHAT
+5. **Personal Over Generic** - Optimized for one human-AI partnership
 
 ---
 
@@ -284,10 +259,9 @@ For inquiries: andersonhs27@gmail.com
 
 **Anderson Henrique da Silva**
 - Location: Minas Gerais, Brasil
-- Background: Philosophy → Computer Science
+- Background: Philosophy -> Computer Science
 - Focus: AI/ML Engineering, Multi-Agent Systems, AI Safety
 
 ---
 
-*Last Updated: 2025-12-30*
-*Next Review: After thesis defense (December 2025)*
+*Last Updated: 2025-12-31*
